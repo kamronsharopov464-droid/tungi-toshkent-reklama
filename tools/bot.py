@@ -68,7 +68,12 @@ def media_of(m):
 def main():
     st = load('state.json', {})
     ups = json.load(open(FAKE, encoding='utf-8')) if FAKE else tg('getUpdates', timeout=0, allowed_updates=json.dumps(['message']))
-    if not ups: print("Yangi xabar yo'q"); return
+    if not ups:
+        # GitHub 60 kun faolsiz omborda avtomatik vazifani o'chiradi — ~25 kunda bir marta kichik belgi yoziladi
+        if not FAKE and time.time() - st.get('beat', 0) > 25 * 86400:
+            st['beat'] = int(time.time()); save('state.json', st)
+            git('add', 'state.json'); git('commit', '-qm', 'Bot faol (avtomatik belgi)'); git('push', '-q')
+        print("Yangi xabar yo'q"); return
     ads = load('ads.json', {'v': 1, 'ads': []}); ads.setdefault('ads', [])
     now = int(time.time() * 1000)
     replies, changed, last = [], False, None
