@@ -1,0 +1,24 @@
+name: Telegram reklama
+# Har 10 daqiqada botga kelgan reklamalarni (faqat admin) omborga yozadi — o'yin shu yerdan oladi
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: telegram-bot
+  cancel-in-progress: false
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Botdan yangi reklamalar
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          git config user.name "Tungi Toshkent bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 tools/bot.py
