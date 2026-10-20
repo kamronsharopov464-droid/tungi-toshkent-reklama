@@ -1,6 +1,14 @@
 {
  "v": 1,
  "tg": "@VFF_UZB",
- "ads": [],
- "updated": 1792389911997
+ "ads": [
+  {
+   "id": "261020075600694d",
+   "type": "img",
+   "url": "https://cdn.jsdelivr.net/gh/kamronsharopov464-droid/tungi-toshkent-reklama@0ca7fca0d55bff81051743c02e353a9e2a8b6880/media/261020075600694d.jpg",
+   "t": 1792482960269,
+   "until": 1792569360269
+  }
+ ],
+ "updated": 1792482960269
 }
