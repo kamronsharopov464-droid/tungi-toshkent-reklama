@@ -2,7 +2,7 @@ name: Telegram reklama
 # Har 10 daqiqada botga kelgan reklamalarni (faqat admin) omborga yozadi — o'yin shu yerdan oladi
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '7-59/10 * * * *'  # soat boshida (:00) GitHub navbati band — shuning uchun :07, :17, :27 ...
   workflow_dispatch:
 permissions:
   contents: write
